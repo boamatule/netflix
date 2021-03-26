@@ -13,7 +13,7 @@ export const Inner = styled.div`
 	margin: auto;
 
 `;
-
+ 
 export const Item = styled.div`
 	color: white;
 	margin-bottom: 10px;
