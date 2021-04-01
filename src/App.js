@@ -25,6 +25,7 @@ export default function App() {
         >
           <Signup />
         </IsUserRedirect>
+        
         <ProtectedRoute user={user} path={ROUTES.BROWSE}>
           <Browse />
         </ProtectedRoute>
