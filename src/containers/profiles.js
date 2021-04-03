@@ -11,6 +11,16 @@ export function SelectProfileContainer({ user, setProfile}) {
 				<Header.Logo to="ROUTES.HOME" src={logo} alt="Netflix"
 				/>
 			</Header.Frame>
+
+			<Profiles>
+				<Profiles.Title>Who is watching?</Profiles.Title>
+				<Profiles.List>
+					<Profiles.User>
+						<Profiles.Picture src={user.photoURL} />
+	          <Profiles.Name>{user.displayName}</Profiles.Name>
+					</Profiles.User>
+				</Profiles.List>
+			</Profiles>
 			
 		</Header>
 	</>	
