@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SelectProfileContainer } from './profiles';
 import { FirebaseContext } from '../context/firebase';
-import { Loading, Header, Card } from '../components';
+import { Card, Loading, Header} from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
@@ -9,6 +9,11 @@ export function BrowseContainer({ slides }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [profile, setProfile] = useState({});
 	const [loading, setLoading] = useState(true);
+	const [slideRows, setSlidesRows] = useState([]);
+	const [category, setCategory] = useState('series');
+
+
+
 	const { firebase } = useContext(FirebaseContext);
 	const user = firebase.auth().currentUser || {};
 
@@ -18,6 +23,10 @@ export function BrowseContainer({ slides }) {
 		}, 3000);
 	}, [profile.displayName]);
 
+	useEffect(() => {
+		setSlidesRows(slides[category]);
+	}, [slides, category]);
+
 	return profile.displayName ? (
 		<>
 			{loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
@@ -26,8 +35,16 @@ export function BrowseContainer({ slides }) {
 				<Header.Frame>
 					<Header.Group>
 						<Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix"/>
-						<Header.TextLink>Series</Header.TextLink>
-						<Header.TextLink>Films</Header.TextLink>
+						<Header.TextLink 
+							active={category ==='series' ? ' true' : 'false'}
+							onClick={() => setCategory('series')}>
+								Series
+						</Header.TextLink>
+						<Header.TextLink 
+							active={category ==='films' ? ' true' : 'false'}
+							onClick={() => setCategory('films')}>
+							Films
+						</Header.TextLink>
 					</Header.Group>
 					<Header.Group>
 						<Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -60,7 +77,11 @@ export function BrowseContainer({ slides }) {
 				</Header.Feature>
 			</Header>
 			<Card.Group>
-				
+				{slideRows.map((slideItem) => (
+					<Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+						<Card.Title>{slideItem.title}</Card.Title>
+					</Card>
+				))}
 			</Card.Group>
 		</>
 	) : (
