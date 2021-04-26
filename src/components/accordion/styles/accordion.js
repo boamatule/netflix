@@ -2,7 +2,11 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
 	display: flex;
-	border-bottom: 8px solid #222
+	border-bottom: 8px solid #222;
+`;
+
+export const Frame = styled.div`
+  margin-bottom: 40px;
 `;
 
 export const Inner = styled.div`
@@ -11,7 +15,6 @@ export const Inner = styled.div`
 	flex-direction: column;
 	max-width: 815px;
 	margin: auto;
-
 `;
 
 export const Item = styled.div`
@@ -25,7 +28,6 @@ export const Item = styled.div`
 		margin-top: 3em;
 	}
 `;
-
 
 export const Header = styled.div`
 	display: flex;
@@ -70,7 +72,6 @@ export const Body = styled.div`
 		line-height: 22px;
 	}
 `;
-
 
 export const Title = styled.h1`
 	font-size: 50px;
