@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { render, fireEvent, getByText, getByTestId } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { Card, Player} from '../../components';
 
 const category = 'series';
@@ -76,7 +75,7 @@ describe('<Card />', () => {
 	});
 
 	it('renders the <Card /> and toggles the card feature', () => {
-		const { container, getByText, queryByText, getByTestId, getByAltText} = render(
+		const { container, queryByText, getByTestId, getByAltText} = render(
 			<Card.Group>
 			{slideRows.map((slideItem) => (
 				<Card key={`${category}-${slideItem.title.toLowerCase()}`}>
